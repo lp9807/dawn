@@ -38,6 +38,7 @@
 
 namespace dawn::native {
 class AHBFunctions;
+class OHOSFunctions;
 }  // namespace dawn::native
 
 namespace dawn::native::vulkan {
@@ -76,6 +77,7 @@ class PhysicalDevice : public PhysicalDeviceBase {
         InstanceBase* instance,
         const Surface* surface) const override;
     const AHBFunctions* GetOrLoadAHBFunctions();
+    const OHOSFunctions* GetOrLoadOHOSFunctions();
 
   private:
     MaybeError InitializeImpl() override;
@@ -126,6 +128,10 @@ class PhysicalDevice : public PhysicalDeviceBase {
 #if DAWN_PLATFORM_IS(ANDROID)
     std::unique_ptr<AHBFunctions> mAHBFunctions;
 #endif  // DAWN_PLATFORM_IS(ANDROID)
+
+#if DAWN_PLATFORM_IS(OHOS)
+    std::unique_ptr<OHOSFunctions> mOHOSFunctions;
+#endif  // DAWN_PLATFORM_IS(OHOS)
 };
 
 }  // namespace dawn::native::vulkan

@@ -2028,6 +2028,16 @@
             {"name": "y cb cr info", "type": "y cb cr vk descriptor"}
         ]
     },
+    "shared texture memory o h native buffer descriptor": {
+        "category": "structure",
+        "chained": "in",
+        "chain roots": ["shared texture memory descriptor"],
+        "tags": ["dawn", "native"],
+        "members": [
+            {"name": "handle", "type": "void *"},
+            {"name": "use external format", "type" : "bool"}
+        ]
+    },
     "shared texture memory descriptor": {
         "category": "structure",
         "extensible": "in",
@@ -2479,7 +2489,6 @@
             {"value": 47, "name": "static samplers", "tags": ["dawn"]},
             {"value": 48, "name": "y cb cr vulkan samplers", "tags": ["dawn"]},
             {"value": 49, "name": "shader module compilation options", "tags": ["dawn"]},
-
             {"value": 50, "name": "dawn load resolve texture", "tags": ["dawn"]},
             {"value": 51, "name": "dawn partial load resolve texture", "tags": ["dawn"]},
             {"value": 52, "name": "multi draw indirect", "tags": ["dawn", "emscripten"], "jsrepr": "'chromium-experimental-multi-draw-indirect'"},
@@ -2491,7 +2500,8 @@
             {"value": 58, "name": "chromium experimental bindless", "tags": ["dawn"]},
             {"value": 59, "name": "adapter properties WGPU", "tags": ["dawn"]},
             {"value": 60, "name": "shared buffer memory D3D12 shared memory file mapping handle", "tags": ["dawn"]},
-            {"value": 61, "name": "shared texture memory D3D12 resource", "tags": ["dawn", "native"]}
+            {"value": 61, "name": "shared texture memory D3D12 resource", "tags": ["dawn", "native"]},
+            {"value": 62, "name": "shared texture memory oh native buffer", "tags": ["dawn", "native"]}
         ]
     },
     "filter mode": {
@@ -3793,6 +3803,20 @@
             {"name": "window", "type": "void *"}
         ]
     },
+    "surface source o h native window": {
+        "category": "structure",
+        "chained": "in",
+        "chain roots": ["surface descriptor"],
+        "tags": ["art", "native"],
+        "members": [
+            {"name": "window", "type": "void *"}
+        ]
+    },
+    "surface descriptor from canvas HTML selector": {
+        "category": "typedef",
+        "type": "emscripten surface source canvas HTML selector",
+        "tags": ["emscripten"]
+    },
     "emscripten surface source canvas HTML selector": {
         "category": "structure",
         "chained": "in",
@@ -4013,8 +4037,9 @@
             {"value": 79, "name": "adapter properties WGPU", "tags": ["dawn"]},
             {"value": 80, "name": "shared buffer memory D3D12 shared memory file mapping handle descriptor", "tags": ["dawn", "native"]},
             {"value": 81, "name": "shared texture memory D3D12 resource descriptor", "tags": ["dawn", "native"]},
-            {"value": 82, "name": "request adapter options angle virtualization group", "tags": ["dawn", "native"]}
-
+            {"value": 82, "name": "request adapter options angle virtualization group", "tags": ["dawn", "native"]},
+            {"value": 83, "name": "shared texture memory oh native buffer descriptor", "tags": ["dawn", "native"]},
+            {"value": 84, "name": "surface source oh native window"}
         ]
     },
     "texture": {

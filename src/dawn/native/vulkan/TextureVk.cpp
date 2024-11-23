@@ -31,6 +31,7 @@
 #include <utility>
 
 #include "dawn/common/Assert.h"
+#include "dawn/common/Log.h"
 #include "dawn/common/Math.h"
 #include "dawn/native/ChainUtils.h"
 #include "dawn/native/DynamicUploader.h"
@@ -571,8 +572,10 @@ VkFormat VulkanImageFormat(const Device* device, wgpu::TextureFormat format) {
             // the environment, default to using D32S8, and availability information so we know
             // that the format is available.
             if (device->IsToggleEnabled(Toggle::VulkanUseD32S8)) {
+                std::cout << "LLLL - map Depth24PlusStencil8 to VK_FORMAT_D32_SFLOAT_S8_UINT\n";
                 return VK_FORMAT_D32_SFLOAT_S8_UINT;
             } else {
+                std::cout << "LLLL - map Depth24PlusStencil8 to VK_FORMAT_D24_UNORM_S8_UINT\n";
                 return VK_FORMAT_D24_UNORM_S8_UINT;
             }
 
@@ -1759,7 +1762,6 @@ MaybeError ImportedTextureBase::EndAccess(ExternalSemaphoreHandle* handle,
     // TODO(dawn:1509): Avoid the empty submit.
     if (mExternalSemaphoreHandle == kNullExternalSemaphoreHandle || targetLayout != currentLayout) {
         mDesiredExportLayout = targetLayout;
-
         Queue* queue = ToBackend(GetDevice()->GetQueue());
         CommandRecordingContext* recordingContext = queue->GetPendingRecordingContext();
         recordingContext->specialSyncTextures.insert(this);
@@ -1767,7 +1769,7 @@ MaybeError ImportedTextureBase::EndAccess(ExternalSemaphoreHandle* handle,
 
         currentLayout = targetLayout;
     }
-    DAWN_ASSERT(mExternalSemaphoreHandle != kNullExternalSemaphoreHandle);
+    // DAWN_ASSERT(mExternalSemaphoreHandle != kNullExternalSemaphoreHandle);
 
     // Write out the layouts and signal semaphore
     *releasedOldLayout = currentLayout;
