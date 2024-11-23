@@ -469,7 +469,6 @@ std::vector<Ref<PhysicalDeviceBase>> InstanceBase::EnumeratePhysicalDevices(
 #endif
 #endif
         BackendConnection* backend = GetBackendConnection(b);
-
         if (backend != nullptr) {
             std::vector<Ref<PhysicalDeviceBase>> physicalDevices =
                 mBackends[b]->DiscoverPhysicalDevices(options);
