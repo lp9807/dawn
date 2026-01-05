@@ -33,6 +33,7 @@
 #include <string>
 
 #include "dawn/native/Device.h"
+#include "dawn/common/log.h"
 
 namespace dawn::native {
 
@@ -83,6 +84,10 @@ MaybeError ValidateSpirv(DeviceBase* device,
             dumpedMsg << "/* Failed to disassemble generated SPIRV */";
         }
         device->EmitLog(WGPULoggingType_Info, dumpedMsg.str().c_str());
+        DAWN_DEBUG() << "Converting to SPIRV: "
+            << "\n----------------------------------------------\n"
+            << dumpedMsg.str()
+            << "\n----------------------------------------------\n";
     }
 
     DAWN_INVALID_IF(!valid, "Produced invalid SPIRV. Please file a bug at https://crbug.com/tint.");
