@@ -318,7 +318,7 @@ MaybeError Buffer::Initialize(bool mappedAtCreation) {
             if (device->IsToggleEnabled(Toggle::NonzeroClearResourcesOnCreationForTesting)) {
                 DAWN_TRY(MapMemoryAndPerformOperation(
                     0, mAllocatedSize,
-                    [](std::span<uint8_t> mapped) { std::ranges::fill(mapped, 0x01); }));
+                    [](std::span<uint8_t> mapped) { std::fill(mapped.begin(), mapped.end(), 0x01); }));
             }
             if (device->IsToggleEnabled(Toggle::LazyClearResourceOnFirstUse) &&
                 paddingClearSize > 0) {
@@ -326,7 +326,7 @@ MaybeError Buffer::Initialize(bool mappedAtCreation) {
                     MapMemoryAndPerformOperation(paddingClearOffset, paddingClearSize,
                                                  [&paddingClearSize](std::span<uint8_t> mapped) {
                                                      DAWN_ASSERT(mapped.size() == paddingClearSize);
-                                                     std::ranges::fill(mapped, 0x0);
+                                                     std::fill(mapped.begin(), mapped.end(), 0x0);
                                                  }));
             }
         } else {
@@ -655,7 +655,7 @@ MaybeError Buffer::UploadData(uint64_t bufferOffset, const void* data, size_t si
         uint64_t dstOffset = 0;
         if (needsZeroInitialization) {
             DAWN_ASSERT(mapped.size() == mAllocatedSize);
-            std::ranges::fill(mapped, 0x0);
+            std::fill(mapped.begin(), mapped.end(), 0x0);
             GetDevice()->IncrementLazyClearCountForTesting();
             dstOffset = bufferOffset;
         }

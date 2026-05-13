@@ -2028,7 +2028,7 @@
             {"name": "y cb cr info", "type": "y cb cr vk descriptor"}
         ]
     },
-    "shared texture memory o h native buffer descriptor": {
+    "shared texture memory OH native buffer descriptor": {
         "category": "structure",
         "chained": "in",
         "chain roots": ["shared texture memory descriptor"],
@@ -2501,7 +2501,7 @@
             {"value": 59, "name": "adapter properties WGPU", "tags": ["dawn"]},
             {"value": 60, "name": "shared buffer memory D3D12 shared memory file mapping handle", "tags": ["dawn"]},
             {"value": 61, "name": "shared texture memory D3D12 resource", "tags": ["dawn", "native"]},
-            {"value": 62, "name": "shared texture memory oh native buffer", "tags": ["dawn", "native"]}
+            {"value": 62, "name": "shared texture memory OH native buffer", "tags": ["dawn", "native"]}
         ]
     },
     "filter mode": {
@@ -3803,7 +3803,7 @@
             {"name": "window", "type": "void *"}
         ]
     },
-    "surface source o h native window": {
+    "surface source OH native window": {
         "category": "structure",
         "chained": "in",
         "chain roots": ["surface descriptor"],
@@ -4038,8 +4038,8 @@
             {"value": 80, "name": "shared buffer memory D3D12 shared memory file mapping handle descriptor", "tags": ["dawn", "native"]},
             {"value": 81, "name": "shared texture memory D3D12 resource descriptor", "tags": ["dawn", "native"]},
             {"value": 82, "name": "request adapter options angle virtualization group", "tags": ["dawn", "native"]},
-            {"value": 83, "name": "shared texture memory oh native buffer descriptor", "tags": ["dawn", "native"]},
-            {"value": 84, "name": "surface source oh native window"}
+            {"value": 83, "name": "shared texture memory OH native buffer descriptor", "tags": ["dawn", "native"]},
+            {"value": 84, "name": "surface source OH native window"}
         ]
     },
     "texture": {

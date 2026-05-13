@@ -58,6 +58,10 @@ struct AsyncWorkerThreadPoolTask {
     dawn::platform::PostWorkerTaskCallback callback;
     void* userdata;
     std::shared_ptr<AsyncWaitableEventImpl> waitableEventImpl;
+
+    AsyncWorkerThreadPoolTask() = default;
+    AsyncWorkerThreadPoolTask(dawn::platform::PostWorkerTaskCallback cb, void* data, std::shared_ptr<AsyncWaitableEventImpl> impl)
+      : callback(cb), userdata(data), waitableEventImpl(std::move(impl)) {}
 };
 
 class AsyncWorkerThreadPool : public dawn::platform::WorkerTaskPool, public NonCopyable {

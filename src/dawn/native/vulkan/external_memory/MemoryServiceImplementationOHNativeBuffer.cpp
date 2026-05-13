@@ -194,7 +194,7 @@ class ServiceImplementationOHNativeBuffer : public ServiceImplementation {
         PNextChainBuilder createInfoChain(&createInfo);
 
         VkExternalMemoryImageCreateInfo externalMemoryImageCreateInfo = {
-            .handleTypes = VK_EXTERNAL_MEMORY_HANDLE_TYPE_OHOS_NATIVE_BUFFER_BIT_OHOS,
+            .handleTypes = VK_EXTERNAL_MEMORY_HANDLE_TYPE_OH_NATIVE_BUFFER_BIT_OHOS,
         };
         createInfoChain.Add(&externalMemoryImageCreateInfo,
                             VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO);

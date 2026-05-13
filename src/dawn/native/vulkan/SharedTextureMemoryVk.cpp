@@ -747,7 +747,7 @@ ResultOrError<Ref<SharedTextureMemory>> SharedTextureMemory::Create(
     bool useExternalFormat = descriptor->useExternalFormat;
 
     const VkExternalMemoryHandleTypeFlagBits handleType =
-        VK_EXTERNAL_MEMORY_HANDLE_TYPE_OHOS_NATIVE_BUFFER_BIT_OHOS;
+        VK_EXTERNAL_MEMORY_HANDLE_TYPE_OH_NATIVE_BUFFER_BIT_OHOS;
 
     // Reflect the properties of the AHardwareBuffer.
     OH_NativeBuffer_Config ohnbConfig{};
@@ -939,7 +939,7 @@ ResultOrError<Ref<SharedTextureMemory>> SharedTextureMemory::Create(
         VkMemoryRequirements memoryRequirements;
         memoryRequirements.memoryTypeBits = bufferProperties.memoryTypeBits;
         int memoryTypeIndex = device->GetResourceMemoryAllocator()->FindBestTypeIndex(
-            memoryRequirements, MemoryKind::Opaque);
+            memoryRequirements, MemoryKind::DeviceLocal);
         DAWN_INVALID_IF(memoryTypeIndex == -1,
                         "Unable to find an appropriate memory type for import.");
 

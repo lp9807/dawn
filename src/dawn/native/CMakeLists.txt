@@ -293,6 +293,15 @@ if (ANDROID)
     )
 endif()
 
+if (OHOS)
+    list(APPEND private_headers
+        "OHOSFunctions.h"
+    )
+    list(APPEND sources
+        "OHOSFunctions.cpp"
+    )
+endif()
+
 find_package(Threads REQUIRED)
 list(APPEND conditional_private_platform_depends
     Threads::Threads
@@ -842,6 +851,15 @@ if (DAWN_ENABLE_VULKAN)
         )
         list(APPEND sources
             "vulkan/external_memory/MemoryServiceImplementationAHardwareBuffer.cpp"
+            "vulkan/external_semaphore/SemaphoreServiceImplementationFD.cpp"
+        )
+    elseif (OHOS)
+        list(APPEND private_headers
+            "vulkan/external_memory/MemoryServiceImplementationOHNativeBuffer.h"
+            "vulkan/external_semaphore/SemaphoreServiceImplementationFD.h"
+        )
+        list(APPEND sources
+            "vulkan/external_memory/MemoryServiceImplementationOHNativeBuffer.cpp"
             "vulkan/external_semaphore/SemaphoreServiceImplementationFD.cpp"
         )
     elseif (UNIX AND NOT APPLE)
