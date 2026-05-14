@@ -557,10 +557,10 @@ MaybeError QueueBase::ValidateSubmit(uint32_t commandCount,
                     }
 
                     DAWN_TRY(scope.textureSyncInfos[j].Iterate(
-                        [&tex = texture](const SubresourceRange&, const TextureSyncInfo& info) -> MaybeError {
-                            DAWN_INVALID_IF(info.usage != tex->GetPinnedUsage(),
-                                            "%s is used as %s while pinned to %s.", tex,
-                                            info.usage, tex->GetPinnedUsage());
+                        [&](const SubresourceRange&, const TextureSyncInfo& info) -> MaybeError {
+                            DAWN_INVALID_IF(info.usage != texture->GetPinnedUsage(),
+                                            "%s is used as %s while pinned to %s.", texture,
+                                            info.usage, texture->GetPinnedUsage());
                             return {};
                         }));
                 }
@@ -573,11 +573,11 @@ MaybeError QueueBase::ValidateSubmit(uint32_t commandCount,
                         }
 
                         DAWN_TRY(scope.textureSyncInfos[j].Iterate(
-                            [&tex=texture](const SubresourceRange&,
+                            [&](const SubresourceRange&,
                                 const TextureSyncInfo& info) -> MaybeError {
-                                DAWN_INVALID_IF(info.usage != tex->GetPinnedUsage(),
-                                                "%s is used as %s while pinned to %s.", tex,
-                                                info.usage, tex->GetPinnedUsage());
+                                DAWN_INVALID_IF(info.usage != texture->GetPinnedUsage(),
+                                                "%s is used as %s while pinned to %s.", texture,
+                                                info.usage, texture->GetPinnedUsage());
                                 return {};
                             }));
                     }

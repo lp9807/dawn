@@ -116,9 +116,9 @@ tint::Bindings GenerateBindingRemapping(const PipelineLayoutBase* layout,
 
             MatchVariant(
                 bgl->GetAPIBindingInfo(apiBindingIndex).bindingLayout,
-                [&, &abi=apiBindingIndex](const BufferBindingInfo& bindingInfo) {
+                [&](const BufferBindingInfo& bindingInfo) {
                     tint::BindingPoint dstBindingPoint =
-                        BindingPointFor(group, bgl->AsBindingIndex(abi));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex));
                     switch (bindingInfo.type) {
                         case wgpu::BufferBindingType::Uniform:
                             bindings.uniform.emplace(srcBindingPoint, dstBindingPoint);
@@ -135,30 +135,30 @@ tint::Bindings GenerateBindingRemapping(const PipelineLayoutBase* layout,
                             break;
                     }
                 },
-                [&, &abi=apiBindingIndex](const SamplerBindingInfo& bindingInfo) {
+                [&](const SamplerBindingInfo& bindingInfo) {
                     bindings.sampler.emplace(
                         srcBindingPoint,
-                        BindingPointFor(group, bgl->AsBindingIndex(abi)));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex)));
                 },
-                [&, &abi=apiBindingIndex](const StaticSamplerBindingInfo& bindingInfo) {
+                [&](const StaticSamplerBindingInfo& bindingInfo) {
                     bindings.sampler.emplace(
                         srcBindingPoint,
-                        BindingPointFor(group, bgl->AsBindingIndex(abi)));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex)));
                 },
-                [&, &abi=apiBindingIndex](const TextureBindingInfo& bindingInfo) {
+                [&](const TextureBindingInfo& bindingInfo) {
                     bindings.texture.emplace(
                         srcBindingPoint,
-                        BindingPointFor(group, bgl->AsBindingIndex(abi)));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex)));
                 },
-                [&, &abi=apiBindingIndex](const StorageTextureBindingInfo& bindingInfo) {
+                [&](const StorageTextureBindingInfo& bindingInfo) {
                     bindings.storage_texture.emplace(
                         srcBindingPoint,
-                        BindingPointFor(group, bgl->AsBindingIndex(abi)));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex)));
                 },
-                [&, &abi=apiBindingIndex](const InputAttachmentBindingInfo&) {
+                [&](const InputAttachmentBindingInfo&) {
                     bindings.input_attachment.emplace(
                         srcBindingPoint,
-                        BindingPointFor(group, bgl->AsBindingIndex(abi)));
+                        BindingPointFor(group, bgl->AsBindingIndex(apiBindingIndex)));
                 },
                 [](const TexelBufferBindingInfo& bindingInfo) {
                     // TODO(crbug/382544164): Prototype texel buffer feature
